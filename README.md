@@ -1,4 +1,4 @@
-# ReverseShellHandler
+# VinnieShellHandler
 *Multi-Shell-Handler, a reverse shell handler that can handle multiple shells*
 
 * Can handle shells from different hosts
