@@ -5,8 +5,16 @@
 * Can handle multiple shells from same host/network
 * Able to switch between different hosts
 
-** Usage **
+# Usage 
 
-```python3 main.py [HOST] [PORT]```
+```
+git clone https://github.com/vinniedaboi/VinnieShellHandler
+```
 
-** Have fun shelling! **
+```
+python3 main.py [HOST] [PORT]
+```
+
+# Have fun shelling!
+
+# Credits: vinniekorkor#7391
