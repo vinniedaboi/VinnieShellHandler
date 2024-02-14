@@ -1,5 +1,5 @@
 # VinnieShellHandler
-*Multi-Shell-Handler, a reverse shell handler that can handle multiple shells*
+*A reverse shell handler that can handle multiple shells*
 
 * Can handle shells from different hosts
 * Can handle multiple shells from same host/network
@@ -15,7 +15,6 @@ pip install vinnieshell
 Or download from github:
 ```
 git clone git@github.com:TheCatMafia/VinnieShellHandler.git
-
 ```
 # Usage:
 ```
