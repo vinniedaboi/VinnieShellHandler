@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import socket
 import threading
 import time
@@ -81,17 +78,36 @@ def transfer(h):
             Log.warning("Transfer function exiting...")
             break
         interactive_stat = slave.interactive
-        buffer = socket_fd.recv(buffer_size)
+        try:
+            buffer = socket_fd.recv(buffer_size)
+        except socket.error as e:
+            Log.error(f"Error receiving data: {e}")
+            break
+
         if not buffer:
             Log.error("No data, breaking...")
             break
+
         sys.stdout.write(buffer.decode('utf-8'))
+
         if not interactive_stat:
             break
+
     if interactive_stat:
-        Log.error("Unexpected EOF!")
-        socket_fd.shutdown(socket.SHUT_RDWR)
-        socket_fd.close()
+        try:
+            # Check if the socket is still connected before shutting it down
+            if socket_fd.fileno() != -1:
+                socket_fd.shutdown(socket.SHUT_RDWR)
+        except socket.error as e:
+            Log.error(f"Error shutting down socket: {e}")
+
+        try:
+            # Check if the socket is still connected before closing it
+            if socket_fd.fileno() != -1:
+                socket_fd.close()
+        except socket.error as e:
+            Log.error(f"Error closing socket: {e}")
+
         slave.remove_node()
 
 def random_string(length, chars):
